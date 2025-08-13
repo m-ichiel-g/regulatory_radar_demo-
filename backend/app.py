@@ -11,6 +11,9 @@ def startup_event():
     SUPABASE_URL = os.environ.get("SUPABASE_URL")
     SUPABASE_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY")
 
+    print("SUPABASE_URL:", SUPABASE_URL)
+    print("SUPABASE_KEY present?", bool(SUPABASE_KEY))
+
     if not SUPABASE_URL or not SUPABASE_KEY:
         raise RuntimeError("Missing SUPABASE environment variables")
 
@@ -31,4 +34,5 @@ def add_publication(title: str, url: str):
         "title": title,
         "url": url
     }).execute()
+    print(data)
     return data.data
